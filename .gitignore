@@ -1,0 +1,36 @@
+# PDF files (CVs/Resumes should be hosted via GitHub Releases or external service)
+*.pdf
+
+# Development and source files (not needed in deployment)
+not_commit/
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs (if using build tools in future)
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
