@@ -1,169 +1,194 @@
 /**
- * Portfolio Website - Interactive Features
- * Theme toggle, scroll animations, spotlight effect, mobile menu
+ * Portfolio - Interactive Features
+ * Theme toggle (auto + manual), scroll tracking, language toggle, complex animations
  */
 
 // ==========================================================================
-// THEME MANAGEMENT
+// THEME MANAGEMENT (Auto by default, manual override with memory)
 // ==========================================================================
 
-/**
- * Get the user's preferred theme
- * Priority: 1) localStorage 2) system preference 3) default to dark
- */
-function getTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        return savedTheme;
+function getThemePreference() {
+    // Check for saved preference
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+        return saved; // 'light', 'dark', or 'auto'
+    }
+    return 'auto'; // Default to auto
+}
+
+function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(preference) {
+    const html = document.documentElement;
+
+    if (preference === 'auto') {
+        // Remove explicit theme, let CSS media query handle it
+        html.removeAttribute('data-theme');
+    } else {
+        html.setAttribute('data-theme', preference);
     }
 
-    // Check system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+    updateThemeIcon(preference);
 }
 
-/**
- * Apply theme to the document
- */
-function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+function updateThemeIcon(preference) {
+    const icon = document.getElementById('themeIcon');
+    if (!icon) return;
 
-    // Update theme toggle icon (Font Awesome)
-    const themeIcon = document.getElementById('themeIcon');
-    if (themeIcon) {
-        if (theme === 'dark') {
-            themeIcon.className = 'fa-solid fa-sun'; // Sun for dark mode
-        } else {
-            themeIcon.className = 'fa-solid fa-moon'; // Moon for light mode
-        }
+    if (preference === 'auto') {
+        icon.className = 'fa-solid fa-circle-half-stroke'; // Auto icon
+    } else if (preference === 'dark') {
+        icon.className = 'fa-solid fa-moon';
+    } else {
+        icon.className = 'fa-solid fa-sun';
     }
 }
 
-/**
- * Toggle between light and dark themes
- */
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
+function cycleTheme() {
+    const current = getThemePreference();
+    let next;
+
+    // Cycle: auto → light → dark → auto
+    if (current === 'auto') {
+        next = 'light';
+    } else if (current === 'light') {
+        next = 'dark';
+    } else {
+        next = 'auto';
+    }
+
+    localStorage.setItem('theme', next);
+    applyTheme(next);
 }
 
-// Initialize theme on page load
+// Initialize theme
 document.addEventListener('DOMContentLoaded', () => {
-    const theme = getTheme();
-    applyTheme(theme);
+    const preference = getThemePreference();
+    applyTheme(preference);
 });
 
-// Theme toggle button event listener
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
+// Theme toggle button
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', cycleTheme);
+    }
+});
+
+// Listen for system theme changes (only affects 'auto' mode)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (getThemePreference() === 'auto') {
+        // CSS handles it automatically, just update icon
+        updateThemeIcon('auto');
+    }
+});
+
+// ==========================================================================
+// LANGUAGE TOGGLE
+// ==========================================================================
+
+function initLanguage() {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    document.documentElement.setAttribute('data-lang', savedLang);
+    updateLanguage(savedLang);
 }
 
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    // Only auto-update if user hasn't manually set a preference
-    if (!localStorage.getItem('theme')) {
-        applyTheme(e.matches ? 'dark' : 'light');
+function toggleLanguage() {
+    const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+    const newLang = currentLang === 'en' ? 'vi' : 'en';
+
+    document.documentElement.setAttribute('data-lang', newLang);
+    localStorage.setItem('lang', newLang);
+    updateLanguage(newLang);
+}
+
+function updateLanguage(lang) {
+    // Update the toggle button text
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        const span = langToggle.querySelector('[data-lang-current]');
+        if (span) span.textContent = lang.toUpperCase();
     }
-});
 
-// ==========================================================================
-// SPOTLIGHT EFFECT (Dark Mode Only)
-// ==========================================================================
-
-/**
- * Track mouse position for spotlight effect
- * Only active in dark mode
- */
-document.addEventListener('mousemove', (e) => {
-    // Only apply spotlight in dark mode
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-        document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-        document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-    }
-});
-
-// ==========================================================================
-// SCROLL ANIMATIONS
-// ==========================================================================
-
-/**
- * Intersection Observer for scroll-triggered animations
- */
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Optional: stop observing after animation triggers once
-            // observer.unobserve(entry.target);
+    // Update all translatable elements
+    const translatables = document.querySelectorAll('[data-en][data-vi]');
+    translatables.forEach(el => {
+        const text = el.getAttribute(`data-${lang}`);
+        if (text) {
+            el.textContent = text;
         }
     });
-}, observerOptions);
+}
 
-// Observe all sections for scroll animations
 document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        // Don't animate the hero section (it's already visible)
-        if (!section.classList.contains('visible')) {
-            observer.observe(section);
-        }
-    });
+    initLanguage();
+
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+    }
 });
 
 // ==========================================================================
-// SCROLL TRACKING FOR ACTIVE NAVIGATION
+// SCROLL TRACKING - ACTIVE NAV LINK
 // ==========================================================================
 
-/**
- * Update active navigation link based on scroll position
- */
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    let current = '';
+    let current = 'home';
 
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
+        const sectionTop = section.offsetTop - 100;
         const sectionHeight = section.clientHeight;
 
-        // Check if section is in viewport
-        if (window.pageYOffset >= sectionTop - 200) {
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
         }
     });
 
-    // Update active class
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        const href = link.getAttribute('href');
+        if (href === `#${current}`) {
             link.classList.add('active');
         }
     });
 }
 
-// Listen for scroll events
 window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-
-// Initialize on load
 document.addEventListener('DOMContentLoaded', updateActiveNavLink);
+
+// ==========================================================================
+// SCROLL REVEAL ANIMATIONS
+// ==========================================================================
+
+function initScrollReveal() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    fadeElements.forEach(el => observer.observe(el));
+}
+
+document.addEventListener('DOMContentLoaded', initScrollReveal);
 
 // ==========================================================================
 // SMOOTH SCROLLING
 // ==========================================================================
 
-/**
- * Smooth scroll to section when clicking nav links
- */
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -171,31 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
 
-            // Handle hash links
             if (href && href !== '#') {
                 e.preventDefault();
-                const targetId = href.substring(1);
-                const targetSection = document.getElementById(targetId);
+                const targetSection = document.getElementById(href.substring(1));
 
                 if (targetSection) {
                     // Close mobile menu if open
-                    const sidebar = document.getElementById('sidebar');
-                    if (sidebar) {
-                        sidebar.classList.remove('active');
-                    }
+                    const navGroup = document.querySelector('.nav-group');
+                    if (navGroup) navGroup.classList.remove('active');
 
-                    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-                    if (mobileMenuToggle) {
-                        mobileMenuToggle.textContent = '☰';
-                    }
-
-                    // Smooth scroll to target
-                    const headerOffset = 0; // No header offset needed with sidebar
-                    const elementPosition = targetSection.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
 
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
@@ -205,193 +219,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// MOBILE MENU TOGGLE (SIDEBAR)
+// MOBILE MENU TOGGLE
 // ==========================================================================
 
-/**
- * Toggle sidebar on mobile
- */
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const sidebar = document.getElementById('sidebar');
+    const navGroup = document.querySelector('.nav-group');
 
-    if (mobileMenuToggle && sidebar) {
+    if (mobileMenuToggle && navGroup) {
         mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
+            navGroup.classList.toggle('active');
 
-            // Update button icon
-            const isActive = sidebar.classList.contains('active');
-            mobileMenuToggle.textContent = isActive ? '✕' : '☰';
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                icon.className = navGroup.classList.contains('active')
+                    ? 'fa-solid fa-xmark'
+                    : 'fa-solid fa-bars';
+            }
         });
 
-        // Close sidebar when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.sidebar') && !e.target.closest('.mobile-menu-toggle')) {
-                sidebar.classList.remove('active');
-                mobileMenuToggle.textContent = '☰';
+            if (!e.target.closest('.nav-group') && !e.target.closest('.mobile-menu-toggle')) {
+                navGroup.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (icon) icon.className = 'fa-solid fa-bars';
             }
         });
-    }
-});
-
-// ==========================================================================
-// RESUME DOWNLOAD
-// ==========================================================================
-
-/**
- * Resume download is now handled directly via the HTML link
- * The download attribute triggers an automatic download when clicked
- * No JavaScript handler needed - keeping this section for documentation
- */
-
-// Header scroll effect removed - using sidebar navigation instead
-
-// ==========================================================================
-// DYNAMIC TYPING EFFECT (Optional Enhancement)
-// ==========================================================================
-
-/**
- * Add subtle typing animation to hero subtitle (optional)
- */
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
-    element.style.opacity = '1';
-
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-
-    type();
-}
-
-// Uncomment to enable typing effect
-// document.addEventListener('DOMContentLoaded', () => {
-//   const subtitle = document.querySelector('.hero-subtitle');
-//   if (subtitle) {
-//     const text = subtitle.textContent;
-//     subtitle.style.opacity = '0';
-//     setTimeout(() => typeWriter(subtitle, text, 30), 800);
-//   }
-// });
-
-// ==========================================================================
-// PERFORMANCE OPTIMIZATIONS
-// ==========================================================================
-
-/**
- * Lazy load images (if images are added later)
- */
-document.addEventListener('DOMContentLoaded', () => {
-    if ('loading' in HTMLImageElement.prototype) {
-        // Native lazy loading supported
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            img.src = img.dataset.src || img.src;
-        });
-    } else {
-        // Fallback for browsers that don't support native lazy loading
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        document.body.appendChild(script);
-    }
-});
-
-// ==========================================================================
-// ACCESSIBILITY ENHANCEMENTS
-// ==========================================================================
-
-/**
- * Keyboard navigation support
- */
-document.addEventListener('keydown', (e) => {
-    // ESC key closes mobile menu
-    if (e.key === 'Escape') {
-        const navLinks = document.getElementById('navLinks');
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-
-        if (navLinks && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            if (mobileMenuToggle) {
-                mobileMenuToggle.textContent = '☰';
-            }
-        }
-    }
-});
-
-/**
- * Focus visible for keyboard users
- */
-document.addEventListener('DOMContentLoaded', () => {
-    // Add focus-visible class for keyboard navigation
-    document.body.addEventListener('mousedown', () => {
-        document.body.classList.add('using-mouse');
-    });
-
-    document.body.addEventListener('keydown', (e) => {
-        if (e.key === 'Tab') {
-            document.body.classList.remove('using-mouse');
-        }
-    });
-});
-
-// ==========================================================================
-// ANALYTICS & TRACKING (Optional)
-// ==========================================================================
-
-/**
- * Track section visibility for analytics
- */
-function trackSectionView(sectionId) {
-    // You can integrate with Google Analytics, Plausible, or other tools here
-    console.log(`Section viewed: ${sectionId}`);
-
-    // Example for Google Analytics (if integrated):
-    // gtag('event', 'section_view', { 'section_id': sectionId });
-}
-
-// Track when sections become visible
-const analyticsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            trackSectionView(entry.target.id);
-        }
-    });
-}, { threshold: 0.5 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach(section => {
-        analyticsObserver.observe(section);
-    });
-});
-
-// ==========================================================================
-// EASTER EGGS & FUN INTERACTIONS
-// ==========================================================================
-
-/**
- * Konami code easter egg (optional fun feature)
- */
-let konamiCode = [];
-const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-
-document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.key);
-    konamiCode = konamiCode.slice(-10);
-
-    if (konamiCode.join(',') === konamiSequence.join(',')) {
-        // Easter egg activated!
-        console.log('🎉 Konami code activated! You found the secret!');
-        document.body.style.transform = 'rotate(360deg)';
-        document.body.style.transition = 'transform 2s ease';
-        setTimeout(() => {
-            document.body.style.transform = '';
-        }, 2000);
     }
 });
 
@@ -399,18 +252,5 @@ document.addEventListener('keydown', (e) => {
 // CONSOLE MESSAGE
 // ==========================================================================
 
-/**
- * Fun console message for developers who inspect the site
- */
-console.log(
-    '%c👋 Hello, fellow developer!',
-    'font-size: 20px; font-weight: bold; color: #6366f1;'
-);
-console.log(
-    '%cThanks for checking out my portfolio! If you\'re interested in collaborating or have questions about the code, feel free to reach out at minhthan189@gmail.com',
-    'font-size: 14px; color: #a1a1aa;'
-);
-console.log(
-    '%c🚀 Built with: HTML, CSS, JavaScript',
-    'font-size: 12px; color: #52525b;'
-);
+console.log('%c👋 Hello!', 'font-size: 18px; font-weight: bold; color: #2563eb;');
+console.log('%cBuilt with passion for AI and clean design.', 'font-size: 12px; color: #64748b;');
