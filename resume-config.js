@@ -109,6 +109,7 @@ function initializeResumeLink() {
 
         if (RESUME_CONFIG.openInNewTab) {
             link.target = '_blank';
+            link.rel = 'noopener noreferrer';
         }
     });
 

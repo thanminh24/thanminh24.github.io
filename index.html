@@ -6,18 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Meta Tags -->
-  <title>Thân Tuệ Minh | AI Engineer & ML Researcher</title>
+  <title>Thân Tuệ Minh | AI Engineer &amp; ML Researcher in Hanoi</title>
   <meta name="description"
-    content="Portfolio of Thân Tuệ Minh - AI Engineer and Machine Learning Researcher specializing in computer vision, deep learning, and medical AI applications.">
+    content="Portfolio of Thân Tuệ Minh, an AI engineer and machine learning researcher in Hanoi working across computer vision, medical AI, and production ML systems.">
   <meta name="keywords"
     content="AI Engineer, Machine Learning, Computer Vision, Deep Learning, Portfolio, Thân Tuệ Minh">
   <meta name="author" content="Thân Tuệ Minh">
+  <meta name="theme-color" id="themeColorLight" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" id="themeColorDark" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://thanminh24.github.io/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Thân Tuệ Minh | AI Engineer & ML Researcher">
+  <meta property="og:url" content="https://thanminh24.github.io/">
+  <meta property="og:title" content="Thân Tuệ Minh | AI Engineer &amp; ML Researcher in Hanoi">
   <meta property="og:description"
-    content="Portfolio showcasing AI/ML projects, research experience, and technical expertise.">
+    content="Computer vision research, applied AI work, and production ML systems by Thân Tuệ Minh.">
+  <meta property="og:image" content="https://thanminh24.github.io/profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thân Tuệ Minh">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="vi_VN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Thân Tuệ Minh | AI Engineer &amp; ML Researcher in Hanoi">
+  <meta name="twitter:description"
+    content="Computer vision research, applied AI work, and production ML systems by Thân Tuệ Minh.">
+  <meta name="twitter:image" content="https://thanminh24.github.io/profile.jpg">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -27,6 +41,9 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content" data-en="Skip to main content" data-vi="Bỏ qua đến nội dung chính">
+    Skip to main content
+  </a>
 
   <!-- ======================== TOP NAVIGATION ======================== -->
   <header class="site-header" id="siteHeader">
@@ -34,34 +51,36 @@
       <!-- Logo (Full Name) -->
       <a href="#home" class="logo">Thân Tuệ Minh</a>
 
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation menu"
+        aria-controls="primaryNav" aria-expanded="false">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
       <!-- Navigation Links + Resume + Language + Theme -->
-      <nav class="nav-group">
+      <nav class="nav-group" id="primaryNav" aria-label="Primary navigation">
         <a href="#home" class="nav-link active" data-en="Home" data-vi="Trang chủ">Home</a>
         <a href="#about" class="nav-link" data-en="About" data-vi="Giới thiệu">About</a>
         <a href="#experience" class="nav-link" data-en="Experience" data-vi="Kinh nghiệm">Experience</a>
         <a href="#projects" class="nav-link" data-en="Projects" data-vi="Dự án">Projects</a>
         <a href="#skills" class="nav-link" data-en="Skills" data-vi="Kỹ năng">Skills</a>
         <a href="#contact" class="nav-link" data-en="Contact" data-vi="Liên hệ">Contact</a>
-        <a href="#" class="nav-link nav-resume" id="resumeBtn">Resume</a>
+        <a href="#" class="nav-link nav-resume" id="resumeBtn" data-en="Resume" data-vi="CV">Resume</a>
 
         <!-- Language Toggle -->
-        <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch to Vietnamese">
           <span data-lang-current>EN</span>
         </button>
 
         <!-- Theme Toggle -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme: automatic">
           <span id="themeIcon">Auto</span>
         </button>
       </nav>
-
-      <!-- Mobile Menu Toggle -->
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
     </div>
   </header>
 
+  <main id="main-content">
   <!-- ======================== HERO SECTION ======================== -->
   <section class="hero" id="home">
     <div class="container">
@@ -69,22 +88,29 @@
         <p class="hero-greeting anim-fade-up" data-en="Hello, I'm" data-vi="Xin chào, mình là">Hello, I'm</p>
         <h1 class="hero-title anim-fade-up anim-delay-1">Thân Tuệ Minh</h1>
         <p class="hero-subtitle anim-fade-up anim-delay-2"
-          data-en="AI Engineer & ML Researcher based in Vietnam. I specialize in Computer Vision, Medical AI, and building scalable Deep Learning solutions."
-          data-vi="Kỹ sư AI & Nhà nghiên cứu Machine Learning tại Việt Nam. Mình chuyên về Computer Vision, AI trong Y tế và xây dựng các giải pháp Deep Learning có khả năng mở rộng.">
-          AI Engineer & ML Researcher based in Vietnam. I specialize in Computer Vision, Medical AI, and building
-          scalable Deep Learning solutions.
+          data-en="AI engineer and ML researcher in Hanoi, Vietnam, building computer vision, medical AI, and production ML systems."
+          data-vi="Kỹ sư AI và nhà nghiên cứu Machine Learning tại Hà Nội, xây dựng các hệ thống Computer Vision, AI Y tế và ML sẵn sàng triển khai.">
+          AI engineer and ML researcher in Hanoi, Vietnam, building computer vision, medical AI, and production ML
+          systems.
         </p>
 
+        <div class="hero-actions anim-fade-up anim-delay-3">
+          <a href="#projects" class="hero-primary-action" data-en="View selected work"
+            data-vi="Xem dự án nổi bật">View selected work</a>
+        </div>
+
         <!-- Social Links -->
-        <div class="hero-socials anim-fade-up anim-delay-3">
-          <a href="https://github.com/thanminh24" target="_blank" class="social-icon" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
+        <div class="hero-socials anim-fade-up anim-delay-4">
+          <a href="https://github.com/thanminh24" target="_blank" rel="noopener noreferrer" class="social-icon"
+            aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
           </a>
-          <a href="https://www.facebook.com/thanminh24" target="_blank" class="social-icon" aria-label="Facebook">
-            <i class="fa-brands fa-facebook"></i>
+          <a href="https://www.facebook.com/thanminh24" target="_blank" rel="noopener noreferrer" class="social-icon"
+            aria-label="Facebook">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
           </a>
           <a href="mailto:minhthan.work@gmail.com" class="social-icon" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -95,7 +121,7 @@
   <section class="about" id="about">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label" data-en="About Me" data-vi="Về mình">About Me</span>
+        <h2 class="section-label" data-en="About Me" data-vi="Về mình">About Me</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -104,13 +130,12 @@
           <img src="profile.jpg" alt="Thân Tuệ Minh" class="profile-img">
         </div>
         <div class="about-text">
-          <p data-en="I'm an Artificial Intelligence student with hands-on experience in machine learning, data processing, and applied research. I enjoy turning technical ideas into practical solutions — from building data pipelines and training models to evaluating and deploying prototypes. I'm seeking opportunities to strengthen my industry experience, contribute to meaningful AI projects, and continue developing as a reliable and adaptable AI engineer."
-            data-vi="Mình là sinh viên ngành Trí tuệ nhân tạo với kinh nghiệm thực tế về Machine Learning, xử lý dữ liệu và nghiên cứu ứng dụng. Mình thích biến các ý tưởng kỹ thuật thành giải pháp thực tiễn — từ xây dựng data pipeline, huấn luyện model đến đánh giá và triển khai prototype. Mình đang tìm kiếm cơ hội để tích lũy kinh nghiệm thực tế, đóng góp vào các dự án AI ý nghĩa và tiếp tục phát triển thành một kỹ sư AI đáng tin cậy, linh hoạt.">
-            I'm an Artificial Intelligence student with hands-on experience in machine learning, data processing, and
-            applied research. I enjoy turning technical ideas into practical solutions — from building data pipelines
-            and training models to evaluating and deploying prototypes. I'm seeking opportunities to strengthen my
-            industry experience, contribute to meaningful AI projects, and continue developing as a reliable and
-            adaptable AI engineer.
+          <p data-en="I'm an Artificial Intelligence undergraduate at FPT University in Hanoi, expected to graduate in February 2027. I work across applied machine learning, data pipelines, model evaluation, and deployment. My experience includes co-authoring peer-reviewed computer vision research, delivering AI POCs in industry, and leading a small team to ship a production AI product with real users."
+            data-vi="Mình là sinh viên ngành Trí tuệ nhân tạo tại Đại học FPT, Hà Nội, dự kiến tốt nghiệp vào tháng 02/2027. Mình làm việc trong các mảng Machine Learning ứng dụng, data pipeline, đánh giá mô hình và triển khai. Kinh nghiệm của mình gồm đồng tác giả nghiên cứu Computer Vision đã qua phản biện, phát triển các POC AI trong doanh nghiệp và dẫn dắt một nhóm nhỏ đưa sản phẩm AI đến người dùng thực tế.">
+            I'm an Artificial Intelligence undergraduate at FPT University in Hanoi, expected to graduate in February
+            2027. I work across applied machine learning, data pipelines, model evaluation, and deployment. My
+            experience includes co-authoring peer-reviewed computer vision research, delivering AI POCs in industry,
+            and leading a small team to ship a production AI product with real users.
           </p>
         </div>
       </div>
@@ -121,7 +146,7 @@
   <section class="experience" id="experience">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label" data-en="Experience" data-vi="Kinh nghiệm">Experience</span>
+        <h2 class="section-label" data-en="Experience" data-vi="Kinh nghiệm">Experience</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -169,7 +194,7 @@
   <section class="projects" id="projects">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label" data-en="Featured Projects" data-vi="Dự án Nổi bật">Featured Projects</span>
+        <h2 class="section-label" data-en="Featured Projects" data-vi="Dự án Nổi bật">Featured Projects</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -314,14 +339,14 @@
   <section class="skills" id="skills">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label" data-en="Skills & Technologies" data-vi="Kỹ năng & Công nghệ">Skills &
-          Technologies</span>
+        <h2 class="section-label" data-en="Skills &amp; Technologies" data-vi="Kỹ năng &amp; Công nghệ">Skills &amp;
+          Technologies</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="skills-grid fade-in">
         <div class="skill-category">
-          <h4 data-en="Programming" data-vi="Lập trình">Programming</h4>
+          <h3 data-en="Programming" data-vi="Lập trình">Programming</h3>
           <ul class="skill-list">
             <li>Python</li>
             <li>SQL</li>
@@ -329,7 +354,7 @@
         </div>
 
         <div class="skill-category">
-          <h4>Machine Learning</h4>
+          <h3>Machine Learning</h3>
           <ul class="skill-list">
             <li>TensorFlow</li>
             <li>Pandas / NumPy</li>
@@ -339,7 +364,7 @@
         </div>
 
         <div class="skill-category">
-          <h4>DevOps & Tools</h4>
+          <h3>DevOps &amp; Tools</h3>
           <ul class="skill-list">
             <li>Git / GitHub</li>
             <li>Docker</li>
@@ -350,7 +375,7 @@
         </div>
 
         <div class="skill-category">
-          <h4 data-en="Certifications" data-vi="Chứng chỉ">Certifications</h4>
+          <h3 data-en="Certifications" data-vi="Chứng chỉ">Certifications</h3>
           <ul class="skill-list">
             <li>DeepLearning.AI TensorFlow Developer</li>
             <li>NLP Specialization</li>
@@ -360,7 +385,7 @@
         </div>
 
         <div class="skill-category">
-          <h4 data-en="Awards" data-vi="Giải thưởng">Awards</h4>
+          <h3 data-en="Awards" data-vi="Giải thưởng">Awards</h3>
           <ul class="skill-list">
             <li data-en="Top 5 Finalist — DENSO Hackathon 2025" data-vi="Top 5 Chung kết — DENSO Hackathon 2025">
               Top 5 Finalist — DENSO Hackathon 2025</li>
@@ -368,7 +393,7 @@
         </div>
 
         <div class="skill-category">
-          <h4 data-en="Languages" data-vi="Ngôn ngữ">Languages</h4>
+          <h3 data-en="Languages" data-vi="Ngôn ngữ">Languages</h3>
           <ul class="skill-list">
             <li data-en="English — Professional working proficiency" data-vi="Tiếng Anh — Thành thạo trong công việc">
               English — Professional working proficiency</li>
@@ -383,7 +408,7 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-label" data-en="Get In Touch" data-vi="Liên hệ">Get In Touch</span>
+        <h2 class="section-label" data-en="Get In Touch" data-vi="Liên hệ">Get In Touch</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -398,16 +423,17 @@
         <a href="mailto:minhthan.work@gmail.com" class="contact-email">minhthan.work@gmail.com</a>
 
         <div class="contact-links">
-          <a href="https://github.com/thanminh24" class="contact-link" target="_blank">
-            <i class="fa-brands fa-github"></i> GitHub
+          <a href="https://github.com/thanminh24" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
           </a>
-          <a href="https://www.facebook.com/thanminh24" class="contact-link" target="_blank">
-            <i class="fa-brands fa-facebook"></i> Facebook
+          <a href="https://www.facebook.com/thanminh24" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i> Facebook
           </a>
         </div>
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ======================== FOOTER ======================== -->
   <footer class="site-footer">

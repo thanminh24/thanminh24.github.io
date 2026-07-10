@@ -1,256 +1,350 @@
 /**
- * Portfolio - Interactive Features
- * Theme toggle (auto + manual), scroll tracking, language toggle, complex animations
+ * Portfolio interactions: theme and language preferences, responsive navigation,
+ * active-section tracking, and progressive reveal animation.
  */
 
+const MOBILE_NAV_BREAKPOINT = 960;
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 // ==========================================================================
-// THEME MANAGEMENT (Auto by default, manual override with memory)
+// THEME MANAGEMENT
 // ==========================================================================
 
 function getThemePreference() {
-    // Check for saved preference
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-        return saved; // 'light', 'dark', or 'auto'
-    }
-    return 'auto'; // Default to auto
+    const savedTheme = localStorage.getItem('theme');
+    return ['auto', 'light', 'dark'].includes(savedTheme) ? savedTheme : 'auto';
 }
 
-function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+function updateThemeIcon(preference) {
+    const icon = document.getElementById('themeIcon');
+    const toggle = document.getElementById('themeToggle');
+    const language = document.documentElement.getAttribute('data-lang') === 'vi' ? 'vi' : 'en';
+    const labels = {
+        en: { auto: 'Auto', light: 'Light', dark: 'Dark', prefix: 'Theme' },
+        vi: { auto: 'Tự động', light: 'Sáng', dark: 'Tối', prefix: 'Giao diện' }
+    };
+    const label = labels[language][preference];
+
+    if (icon) icon.textContent = label;
+    if (toggle) {
+        const accessibleLabel = `${labels[language].prefix}: ${label}`;
+        toggle.setAttribute('aria-label', accessibleLabel);
+        toggle.setAttribute('title', accessibleLabel);
+    }
 }
 
 function applyTheme(preference) {
     const html = document.documentElement;
+    const systemUsesDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const effectiveTheme = preference === 'auto'
+        ? (systemUsesDark ? 'dark' : 'light')
+        : preference;
 
     if (preference === 'auto') {
-        // Remove explicit theme, let CSS media query handle it
         html.removeAttribute('data-theme');
     } else {
         html.setAttribute('data-theme', preference);
     }
 
+    const lightThemeColor = document.getElementById('themeColorLight');
+    const darkThemeColor = document.getElementById('themeColorDark');
+    if (lightThemeColor && darkThemeColor) {
+        if (preference === 'auto') {
+            lightThemeColor.media = '(prefers-color-scheme: light)';
+            darkThemeColor.media = '(prefers-color-scheme: dark)';
+        } else {
+            lightThemeColor.media = effectiveTheme === 'light' ? 'all' : 'not all';
+            darkThemeColor.media = effectiveTheme === 'dark' ? 'all' : 'not all';
+        }
+    }
+
     updateThemeIcon(preference);
 }
 
-function updateThemeIcon(preference) {
-    const icon = document.getElementById('themeIcon');
-    if (!icon) return;
-
-    if (preference === 'auto') {
-        icon.textContent = 'Auto';
-    } else if (preference === 'dark') {
-        icon.textContent = 'Dark';
-    } else {
-        icon.textContent = 'Light';
-    }
-}
-
 function cycleTheme() {
-    const current = getThemePreference();
-    let next;
+    const currentTheme = getThemePreference();
+    const nextTheme = currentTheme === 'auto'
+        ? 'light'
+        : currentTheme === 'light' ? 'dark' : 'auto';
 
-    // Cycle: auto → light → dark → auto
-    if (current === 'auto') {
-        next = 'light';
-    } else if (current === 'light') {
-        next = 'dark';
-    } else {
-        next = 'auto';
-    }
-
-    localStorage.setItem('theme', next);
-    applyTheme(next);
+    localStorage.setItem('theme', nextTheme);
+    applyTheme(nextTheme);
 }
 
-// Initialize theme
-document.addEventListener('DOMContentLoaded', () => {
-    const preference = getThemePreference();
-    applyTheme(preference);
-});
+function initTheme() {
+    applyTheme(getThemePreference());
 
-// Theme toggle button
-document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', cycleTheme);
-    }
-});
+    if (themeToggle) themeToggle.addEventListener('click', cycleTheme);
 
-// Listen for system theme changes (only affects 'auto' mode)
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (getThemePreference() === 'auto') {
-        // CSS handles it automatically, just update icon
-        updateThemeIcon('auto');
+    const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemThemeChange = () => {
+        if (getThemePreference() === 'auto') applyTheme('auto');
+    };
+
+    if (typeof systemThemeQuery.addEventListener === 'function') {
+        systemThemeQuery.addEventListener('change', handleSystemThemeChange);
+    } else if (typeof systemThemeQuery.addListener === 'function') {
+        systemThemeQuery.addListener(handleSystemThemeChange);
     }
-});
+}
 
 // ==========================================================================
 // LANGUAGE TOGGLE
 // ==========================================================================
 
-function initLanguage() {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    document.documentElement.setAttribute('data-lang', savedLang);
-    updateLanguage(savedLang);
-}
-
-function toggleLanguage() {
-    const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
-    const newLang = currentLang === 'en' ? 'vi' : 'en';
-
-    document.documentElement.setAttribute('data-lang', newLang);
-    localStorage.setItem('lang', newLang);
-    updateLanguage(newLang);
-}
-
 function updateLanguage(lang) {
-    // Update the toggle button text
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        const span = langToggle.querySelector('[data-lang-current]');
-        if (span) span.textContent = lang.toUpperCase();
-    }
+    const html = document.documentElement;
+    html.setAttribute('data-lang', lang);
+    html.setAttribute('lang', lang);
 
-    // Update all translatable elements
-    const translatables = document.querySelectorAll('[data-en][data-vi]');
-    translatables.forEach(el => {
-        const text = el.getAttribute(`data-${lang}`);
-        if (text) {
-            el.textContent = text;
-        }
+    document.querySelectorAll('[data-en][data-vi]').forEach(element => {
+        const translation = element.getAttribute(`data-${lang}`);
+        if (translation !== null) element.textContent = translation;
+    });
+
+    const langToggle = document.getElementById('langToggle');
+    if (!langToggle) return;
+
+    const currentLanguage = langToggle.querySelector('[data-lang-current]');
+    if (currentLanguage) currentLanguage.textContent = lang.toUpperCase();
+
+    const switchLabel = lang === 'en'
+        ? 'Switch to Vietnamese'
+        : 'Chuyển sang tiếng Anh';
+    langToggle.setAttribute('aria-label', switchLabel);
+    langToggle.setAttribute('title', switchLabel);
+    updateThemeIcon(getThemePreference());
+    updateMobileMenuLabel();
+}
+
+function initLanguage() {
+    const savedLanguage = localStorage.getItem('lang');
+    const initialLanguage = savedLanguage === 'vi' ? 'vi' : 'en';
+    updateLanguage(initialLanguage);
+
+    const langToggle = document.getElementById('langToggle');
+    if (!langToggle) return;
+
+    langToggle.addEventListener('click', () => {
+        const currentLanguage = document.documentElement.getAttribute('data-lang') || 'en';
+        const nextLanguage = currentLanguage === 'en' ? 'vi' : 'en';
+        localStorage.setItem('lang', nextLanguage);
+        updateLanguage(nextLanguage);
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initLanguage();
+// ==========================================================================
+// MOBILE NAVIGATION
+// ==========================================================================
 
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', toggleLanguage);
+function updateMobileMenuLabel() {
+    const toggle = document.getElementById('mobileMenuToggle');
+    if (!toggle) return;
+
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    const isVietnamese = document.documentElement.getAttribute('lang') === 'vi';
+    const label = isVietnamese
+        ? (isOpen ? 'Đóng menu điều hướng' : 'Mở menu điều hướng')
+        : (isOpen ? 'Close navigation menu' : 'Open navigation menu');
+
+    toggle.setAttribute('aria-label', label);
+    toggle.setAttribute('title', label);
+}
+
+function initMobileNavigation() {
+    const toggle = document.getElementById('mobileMenuToggle');
+    if (!toggle) return;
+
+    const controlledNavId = toggle.getAttribute('aria-controls');
+    const nav = (controlledNavId && document.getElementById(controlledNavId))
+        || document.querySelector('.nav-group');
+    if (!nav) return;
+
+    const icon = toggle.querySelector('i');
+
+    function isOpen() {
+        return nav.classList.contains('active');
     }
-});
 
-// ==========================================================================
-// SCROLL TRACKING - ACTIVE NAV LINK
-// ==========================================================================
+    function setOpen(open, options = {}) {
+        const { focusFirst = false, restoreFocus = false } = options;
 
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+        nav.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        updateMobileMenuLabel();
 
-    let current = 'home';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
+        if (icon) {
+            icon.classList.toggle('fa-bars', !open);
+            icon.classList.toggle('fa-xmark', open);
         }
+
+        if (open && focusFirst) {
+            const firstNavItem = nav.querySelector(
+                'a[href]:not([href="#"]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            );
+            if (firstNavItem) firstNavItem.focus();
+        } else if (!open && restoreFocus) {
+            toggle.focus();
+        }
+    }
+
+    setOpen(false);
+
+    toggle.addEventListener('click', () => {
+        const open = !isOpen();
+        setOpen(open, { focusFirst: open });
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
+    nav.addEventListener('click', event => {
+        const link = event.target.closest('a[href]');
+        if (!link) return;
+
+        setOpen(false);
+
         const href = link.getAttribute('href');
-        if (href === `#${current}`) {
-            link.classList.add('active');
+        if (!href?.startsWith('#') || href.length === 1) return;
+
+        const targetSection = document.getElementById(href.slice(1));
+        const focusTarget = targetSection?.querySelector('h1, h2') || targetSection;
+        if (!focusTarget) return;
+
+        window.requestAnimationFrame(() => {
+            focusTarget.setAttribute('tabindex', '-1');
+            focusTarget.focus({ preventScroll: true });
+            focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), { once: true });
+        });
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && isOpen()) {
+            setOpen(false, { restoreFocus: true });
         }
     });
+
+    document.addEventListener('click', event => {
+        if (!isOpen()) return;
+        if (!nav.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > MOBILE_NAV_BREAKPOINT && isOpen()) setOpen(false);
+    }, { passive: true });
 }
 
-window.addEventListener('scroll', updateActiveNavLink, { passive: true });
-document.addEventListener('DOMContentLoaded', updateActiveNavLink);
+// ==========================================================================
+// ACTIVE SECTION TRACKING
+// ==========================================================================
+
+function initActiveNavigation() {
+    const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'))
+        .filter(link => link.getAttribute('href').length > 1);
+
+    const sectionLinks = navLinks
+        .map(link => ({
+            link,
+            section: document.getElementById(link.getAttribute('href').slice(1))
+        }))
+        .filter(item => item.section);
+
+    if (sectionLinks.length === 0) return;
+
+    let updatePending = false;
+
+    function updateActiveNavLink() {
+        const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+        const marker = window.scrollY + headerHeight + Math.min(window.innerHeight * 0.2, 160);
+        let currentSection = sectionLinks[0].section;
+
+        sectionLinks.forEach(({ section }) => {
+            if (section.offsetTop <= marker) currentSection = section;
+        });
+
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+            currentSection = sectionLinks[sectionLinks.length - 1].section;
+        }
+
+        sectionLinks.forEach(({ link, section }) => {
+            const active = section === currentSection;
+            link.classList.toggle('active', active);
+            if (active) {
+                link.setAttribute('aria-current', 'location');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+
+        updatePending = false;
+    }
+
+    function requestActiveNavUpdate() {
+        if (updatePending) return;
+        updatePending = true;
+        window.requestAnimationFrame(updateActiveNavLink);
+    }
+
+    window.addEventListener('scroll', requestActiveNavUpdate, { passive: true });
+    window.addEventListener('resize', requestActiveNavUpdate, { passive: true });
+    requestActiveNavUpdate();
+}
 
 // ==========================================================================
-// SCROLL REVEAL ANIMATIONS
+// PROGRESSIVE REVEAL
 // ==========================================================================
 
 function initScrollReveal() {
-    const fadeElements = document.querySelectorAll('.fade-in');
+    const html = document.documentElement;
+    const fadeElements = Array.from(document.querySelectorAll('.fade-in'));
+    if (fadeElements.length === 0) return;
 
-    const observer = new IntersectionObserver((entries) => {
+    function showAllContent() {
+        html.classList.remove('reveal-ready');
+        fadeElements.forEach(element => element.classList.add('visible'));
+    }
+
+    if (!('IntersectionObserver' in window) || reducedMotionQuery.matches) {
+        showAllContent();
+        return;
+    }
+
+    html.classList.add('reveal-ready');
+
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         });
     }, {
         threshold: 0.1,
         rootMargin: '0px 0px -80px 0px'
     });
 
-    fadeElements.forEach(el => observer.observe(el));
+    fadeElements.forEach(element => observer.observe(element));
+
+    const handleMotionPreferenceChange = event => {
+        if (!event.matches) return;
+        observer.disconnect();
+        showAllContent();
+    };
+
+    if (typeof reducedMotionQuery.addEventListener === 'function') {
+        reducedMotionQuery.addEventListener('change', handleMotionPreferenceChange, { once: true });
+    } else if (typeof reducedMotionQuery.addListener === 'function') {
+        reducedMotionQuery.addListener(handleMotionPreferenceChange);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', initScrollReveal);
+function initPortfolio() {
+    initTheme();
+    initLanguage();
+    initMobileNavigation();
+    initActiveNavigation();
+    initScrollReveal();
+}
 
-// ==========================================================================
-// SMOOTH SCROLLING
-// ==========================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-
-            if (href && href !== '#') {
-                e.preventDefault();
-                const targetSection = document.getElementById(href.substring(1));
-
-                if (targetSection) {
-                    // Close mobile menu if open
-                    const navGroup = document.querySelector('.nav-group');
-                    if (navGroup) navGroup.classList.remove('active');
-
-                    const headerHeight = document.querySelector('.site-header')?.offsetHeight || 60;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-});
-
-// ==========================================================================
-// MOBILE MENU TOGGLE
-// ==========================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const navGroup = document.querySelector('.nav-group');
-
-    if (mobileMenuToggle && navGroup) {
-        mobileMenuToggle.addEventListener('click', () => {
-            navGroup.classList.toggle('active');
-
-            const icon = mobileMenuToggle.querySelector('i');
-            if (icon) {
-                icon.className = navGroup.classList.contains('active')
-                    ? 'fa-solid fa-xmark'
-                    : 'fa-solid fa-bars';
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-group') && !e.target.closest('.mobile-menu-toggle')) {
-                navGroup.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                if (icon) icon.className = 'fa-solid fa-bars';
-            }
-        });
-    }
-});
-
-// ==========================================================================
-// CONSOLE MESSAGE
-// ==========================================================================
-
-console.log('%c👋 Hello!', 'font-size: 18px; font-weight: bold; color: #2563eb;');
-console.log('%cBuilt with passion for AI and clean design.', 'font-size: 12px; color: #64748b;');
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolio, { once: true });
+} else {
+    initPortfolio();
+}
