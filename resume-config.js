@@ -93,24 +93,26 @@ function getResumeUrl() {
  * Initialize resume link when page loads
  */
 function initializeResumeLink() {
-    const resumeBtn = document.getElementById('resumeBtn');
-    if (!resumeBtn) return;
+    // Nav button (#resumeBtn) plus any additional links marked with .resume-link (e.g. hero CTA)
+    const resumeLinks = document.querySelectorAll('#resumeBtn, .resume-link');
+    if (resumeLinks.length === 0) return;
 
     const url = getResumeUrl();
-    resumeBtn.href = url;
 
-    // Always set download attribute with custom filename
-    // This ensures the file downloads as "ThanTueMinh_Resume.pdf" 
-    // even if the source file is named "resume.pdf"
-    resumeBtn.setAttribute('download', RESUME_CONFIG.downloadFilename);
+    resumeLinks.forEach(link => {
+        link.href = url;
 
-    // Set target based on config
-    if (RESUME_CONFIG.openInNewTab) {
-        resumeBtn.target = '_blank';
-    }
+        // Always set download attribute with custom filename
+        // This ensures the file downloads as "ThanTueMinh_Resume.pdf"
+        // even if the source file is named "resume.pdf"
+        link.setAttribute('download', RESUME_CONFIG.downloadFilename);
 
-    console.log('Resume link initialized:', url);
-    console.log('Download filename:', RESUME_CONFIG.downloadFilename);
+        if (RESUME_CONFIG.openInNewTab) {
+            link.target = '_blank';
+        }
+    });
+
+    console.log('Resume links initialized:', url, '→', RESUME_CONFIG.downloadFilename);
 }
 
 // Initialize when DOM is ready

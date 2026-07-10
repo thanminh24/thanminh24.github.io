@@ -4,6 +4,9 @@
 # Development and source files (not needed in deployment)
 not_commit/
 
+# Internal planning docs (must never deploy to the public Pages site)
+plans/
+
 # Node modules
 node_modules/
 

@@ -19,10 +19,6 @@
   <meta property="og:description"
     content="Portfolio showcasing AI/ML projects, research experience, and technical expertise.">
 
-  <!-- Favicon -->
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
-
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -55,7 +51,7 @@
 
         <!-- Theme Toggle -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <i class="fa-solid fa-circle-half-stroke" id="themeIcon"></i>
+          <span id="themeIcon">Auto</span>
         </button>
       </nav>
 
@@ -87,7 +83,7 @@
           <a href="https://www.facebook.com/thanminh24" target="_blank" class="social-icon" aria-label="Facebook">
             <i class="fa-brands fa-facebook"></i>
           </a>
-          <a href="mailto:minhthan189@gmail.com" class="social-icon" aria-label="Email">
+          <a href="mailto:minhthan.work@gmail.com" class="social-icon" aria-label="Email">
             <i class="fa-solid fa-envelope"></i>
           </a>
         </div>
@@ -108,11 +104,13 @@
           <img src="profile.jpg" alt="Thân Tuệ Minh" class="profile-img">
         </div>
         <div class="about-text">
-          <p data-en="I'm an ambitious university student specializing in Artificial Intelligence with a strong foundation in data science, machine learning, and problem-solving. I'm driven to apply academic knowledge to real-world challenges through internships, research projects, and industry collaborations."
-            data-vi="Mình là sinh viên đại học chuyên ngành Trí tuệ nhân tạo với nền tảng vững chắc về Data Science, Machine Learning và giải quyết vấn đề. Mình luôn nỗ lực áp dụng kiến thức học thuật vào các thách thức thực tế thông qua thực tập, dự án nghiên cứu và hợp tác với doanh nghiệp.">
-            I'm an ambitious university student specializing in Artificial Intelligence with a strong foundation in data
-            science, machine learning, and problem-solving. I'm driven to apply academic knowledge to real-world
-            challenges through internships, research projects, and industry collaborations.
+          <p data-en="I'm an Artificial Intelligence student with hands-on experience in machine learning, data processing, and applied research. I enjoy turning technical ideas into practical solutions — from building data pipelines and training models to evaluating and deploying prototypes. I'm seeking opportunities to strengthen my industry experience, contribute to meaningful AI projects, and continue developing as a reliable and adaptable AI engineer."
+            data-vi="Mình là sinh viên ngành Trí tuệ nhân tạo với kinh nghiệm thực tế về Machine Learning, xử lý dữ liệu và nghiên cứu ứng dụng. Mình thích biến các ý tưởng kỹ thuật thành giải pháp thực tiễn — từ xây dựng data pipeline, huấn luyện model đến đánh giá và triển khai prototype. Mình đang tìm kiếm cơ hội để tích lũy kinh nghiệm thực tế, đóng góp vào các dự án AI ý nghĩa và tiếp tục phát triển thành một kỹ sư AI đáng tin cậy, linh hoạt.">
+            I'm an Artificial Intelligence student with hands-on experience in machine learning, data processing, and
+            applied research. I enjoy turning technical ideas into practical solutions — from building data pipelines
+            and training models to evaluating and deploying prototypes. I'm seeking opportunities to strengthen my
+            industry experience, contribute to meaningful AI projects, and continue developing as a reliable and
+            adaptable AI engineer.
           </p>
         </div>
       </div>
@@ -132,29 +130,6 @@
         <!-- Experience Item 1 -->
         <article class="experience-item fade-in">
           <div class="experience-meta">
-            <span class="experience-date" data-en="Apr 2025 — Present" data-vi="04/2025 — Hiện tại">Apr 2025 —
-              Present</span>
-          </div>
-          <div class="experience-content">
-            <h3 class="experience-title" data-en="Research Assistant" data-vi="Trợ lý Nghiên cứu">Research Assistant
-            </h3>
-            <p class="experience-company">Computer Vision & Medical AI Lab — VinUniversity</p>
-            <ul class="experience-description">
-              <li data-en="Supervised by Asst. Prof. Pham Huy Hieu, PhD" data-vi="Hướng dẫn bởi TS. Phạm Huy Hiệu">
-                Supervised by Asst. Prof. Pham Huy Hieu, PhD</li>
-              <li data-en="Built preprocessing and data pipeline for breast cancer imaging datasets"
-                data-vi="Xây dựng quy trình tiền xử lý và data pipeline cho bộ dữ liệu hình ảnh ung thư vú">Built
-                preprocessing and data pipeline for breast cancer imaging datasets</li>
-              <li data-en="Contributed to deployment-ready detection models for clinical use"
-                data-vi="Đóng góp vào việc phát triển model nhận dạng sẵn sàng triển khai cho y tế">Contributed to
-                deployment-ready detection models for clinical use</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Experience Item 2 -->
-        <article class="experience-item fade-in">
-          <div class="experience-meta">
             <span class="experience-date" data-en="May 2025 — Dec 2025" data-vi="05/2025 — 12/2025">May 2025 — Dec
               2025</span>
           </div>
@@ -163,18 +138,25 @@
               Intern</h3>
             <p class="experience-company">Digipro Tech., JSC</p>
             <ul class="experience-description">
-              <li data-en="Delivered 5+ AI POCs (forecasting, classification, NLP)"
-                data-vi="Hoàn thành hơn 5 POC về AI (dự báo, phân loại, NLP)">Delivered 5+ AI POCs (forecasting,
-                classification, NLP)</li>
-              <li data-en="Built automated ETL pipelines, reducing manual work by ~30%"
-                data-vi="Xây dựng pipeline ETL tự động, giảm ~30% công việc thủ công">Built automated ETL pipelines,
-                reducing manual work by ~30%</li>
-              <li data-en="Managed datasets using PostgreSQL and S3 object storage"
-                data-vi="Quản lý dữ liệu với PostgreSQL và S3">Managed datasets using PostgreSQL and S3 object storage
-              </li>
-              <li data-en="Containerized services with Docker and supported Kubernetes deployments"
-                data-vi="Đóng gói service với Docker và hỗ trợ triển khai trên Kubernetes">Containerized services with
-                Docker and supported Kubernetes deployments</li>
+              <li data-en="Delivered 5+ AI POCs (forecasting, classification, NLP) as reusable components for larger systems — data prep, feature logic, inference prototypes"
+                data-vi="Hoàn thành hơn 5 POC về AI (dự báo, phân loại, NLP) dưới dạng component tái sử dụng cho hệ thống lớn — chuẩn bị dữ liệu, xử lý feature, prototype inference">
+                Delivered 5+ AI POCs (forecasting, classification, NLP) as reusable components for larger systems —
+                data prep, feature logic, inference prototypes</li>
+              <li data-en="Built automated ETL/data pipelines for training and inference, cutting manual work by ~30%"
+                data-vi="Xây dựng pipeline ETL/dữ liệu tự động cho huấn luyện và inference, giảm ~30% công việc thủ công">
+                Built automated ETL/data pipelines for training and inference, cutting manual work by ~30%</li>
+              <li data-en="Managed datasets and features using PostgreSQL + S3 object storage, writing optimized SQL and maintaining curated tables"
+                data-vi="Quản lý dữ liệu và feature với PostgreSQL + S3, viết SQL tối ưu và duy trì các bảng dữ liệu chuẩn hóa">
+                Managed datasets and features using PostgreSQL + S3 object storage, writing optimized SQL and
+                maintaining curated tables</li>
+              <li data-en="Packaged services with Docker and supported deployments on Kubernetes (incl. Helm-style configs) for consistent environments"
+                data-vi="Đóng gói service với Docker và hỗ trợ triển khai trên Kubernetes (bao gồm cấu hình kiểu Helm) để đảm bảo môi trường nhất quán">
+                Packaged services with Docker and supported deployments on Kubernetes (incl. Helm-style configs) for
+                consistent environments</li>
+              <li data-en="Ran analysis and evaluation (classification/clustering/NLP), improving model performance by ~20% and documenting handoff notes"
+                data-vi="Thực hiện phân tích và đánh giá (phân loại/phân cụm/NLP), cải thiện hiệu năng model ~20% và viết tài liệu bàn giao">
+                Ran analysis and evaluation (classification/clustering/NLP), improving model performance by ~20% and
+                documenting handoff notes</li>
             </ul>
           </div>
         </article>
@@ -193,42 +175,64 @@
 
       <div class="projects-list">
 
-        <!-- Project 1 -->
+        <!-- Project 1: Masked FER (published research) -->
         <article class="project-item fade-in">
           <div class="project-meta">
-            <span>Research / CV</span>
+            <span data-en="Research / CV" data-vi="Nghiên cứu / Thị giác máy tính">Research / CV</span>
             <span data-en="Jan — Mar 2025" data-vi="01 — 03/2025">Jan — Mar 2025</span>
           </div>
           <div class="project-content">
             <h3 class="project-title">Masked Facial Emotion Recognition</h3>
-            <p class="project-description"
-              data-en="Developed a DenseNet-161-based model for recognizing emotions on faces covered by masks. Achieved 70.66% accuracy on the CK+ dataset. Deployed as a real-time prototype on physical devices."
-              data-vi="Phát triển model dựa trên DenseNet-161 để nhận dạng cảm xúc khuôn mặt khi đeo khẩu trang. Đạt độ chính xác 70.66% trên bộ dữ liệu CK+. Đã được triển khai thử theo thời gian thực trên thiết bị thực tế.">
-              Developed a DenseNet-161-based model for recognizing emotions on faces covered by masks. Achieved 70.66%
-              accuracy on the CK+ dataset. Deployed as a real-time prototype on physical devices.
-            </p>
+            <ul class="project-bullets">
+              <li data-en="Developed a DenseNet-161–based FER model with synthetic mask augmentation to improve recognition under occlusion"
+                data-vi="Phát triển model FER dựa trên DenseNet-161 với kỹ thuật tăng cường dữ liệu khẩu trang tổng hợp để cải thiện nhận dạng khi khuôn mặt bị che">
+                Developed a DenseNet-161–based FER model with synthetic mask augmentation to improve recognition under
+                occlusion</li>
+              <li data-en="Trained on AffectNet, CK+, JAFFE, KDEF, and FER2013, achieving 70.66% accuracy on masked CK+"
+                data-vi="Huấn luyện trên AffectNet, CK+, JAFFE, KDEF và FER2013, đạt độ chính xác 70.66% trên masked CK+">
+                Trained on AffectNet, CK+, JAFFE, KDEF, and FER2013, achieving 70.66% accuracy on masked CK+</li>
+              <li data-en="Outperformed multiple baselines (RAN, ACNN, OADN, VTC-FER) while maintaining resource efficiency"
+                data-vi="Vượt nhiều baseline (RAN, ACNN, OADN, VTC-FER) trong khi vẫn tiết kiệm tài nguyên">
+                Outperformed multiple baselines (RAN, ACNN, OADN, VTC-FER) while maintaining resource efficiency</li>
+            </ul>
+            <div class="publication-callout">
+              <span class="publication-label" data-en="Publication — Co-authored" data-vi="Công bố khoa học — Đồng tác giả">
+                Publication — Co-authored</span>
+              <p class="publication-title">“Implementing a Resource-Friendly Masked Facial Emotion Recognition Model
+                Using Transfer Learning with DenseNet-161” — Intelligent Human Computer Interaction, IHCI 2025,
+                Springer LNCS Vol. 16436, pp. 138–148</p>
+              <a href="https://doi.org/10.1007/978-3-032-26349-0_12" target="_blank"
+                rel="noopener">https://doi.org/10.1007/978-3-032-26349-0_12</a>
+            </div>
             <div class="project-tech">
               <span class="tech-tag">Python</span>
               <span class="tech-tag">TensorFlow</span>
               <span class="tech-tag">Computer Vision</span>
+              <span class="tech-tag">Publication</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 2 -->
+        <!-- Project 2: Test Time Adaptation -->
         <article class="project-item fade-in">
           <div class="project-meta">
-            <span>Medical AI</span>
-            <span data-en="Apr 2025 — Present" data-vi="04/2025 — Hiện tại">Apr 2025 — Present</span>
+            <span data-en="Medical AI" data-vi="AI Y tế">Medical AI</span>
+            <span data-en="Jan 2026 — Present" data-vi="01/2026 — Hiện tại">Jan 2026 — Present</span>
           </div>
           <div class="project-content">
-            <h3 class="project-title">Breast Cancer Classification</h3>
-            <p class="project-description"
-              data-en="Building an end-to-end system for breast cancer detection using deep learning. Developed comprehensive data pipelines for preprocessing medical imaging datasets."
-              data-vi="Xây dựng hệ thống end-to-end để phát hiện ung thư vú bằng Deep Learning. Phát triển data pipeline toàn diện để tiền xử lý bộ dữ liệu hình ảnh y tế.">
-              Building an end-to-end system for breast cancer detection using deep learning. Developed comprehensive
-              data pipelines for preprocessing medical imaging datasets.
-            </p>
+            <h3 class="project-title" data-en="Test-Time Adaptation in Medical Images"
+              data-vi="Test-Time Adaptation cho Ảnh Y tế">Test-Time Adaptation in Medical Images</h3>
+            <ul class="project-bullets">
+              <li data-en="Test-time adaptation for classification without access to source training data"
+                data-vi="Test-time adaptation cho bài toán phân loại mà không cần truy cập dữ liệu huấn luyện gốc">
+                Test-time adaptation for classification without access to source training data</li>
+              <li data-en="Lightweight adaptation of only classifier/routing parameters, encoder frozen"
+                data-vi="Chỉ điều chỉnh nhẹ các tham số classifier/routing, giữ nguyên encoder">
+                Lightweight adaptation of only classifier/routing parameters, encoder frozen</li>
+              <li data-en="Applied to whole-slide image (WSI) classification pipeline"
+                data-vi="Áp dụng vào pipeline phân loại ảnh whole-slide (WSI)">
+                Applied to whole-slide image (WSI) classification pipeline</li>
+            </ul>
             <div class="project-tech">
               <span class="tech-tag">Python</span>
               <span class="tech-tag">Deep Learning</span>
@@ -237,21 +241,61 @@
           </div>
         </article>
 
-        <!-- Project 3 - DATA ORIENTED -->
+        <!-- Project 3: SkinSunny -->
         <article class="project-item fade-in">
           <div class="project-meta">
-            <span>Data Engineering</span>
+            <span data-en="Full-Stack AI / Lead" data-vi="Full-Stack AI / Trưởng nhóm">Full-Stack AI / Lead</span>
+            <span data-en="May — Jul 2026" data-vi="05 — 07/2026">May — Jul 2026</span>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">SkinSunny — AI-Powered Skincare Companion</h3>
+            <ul class="project-bullets">
+              <li data-en="Led the architecture and delivery of a full-stack AI skincare platform, coordinating a three-person team across frontend, backend, and AI service development"
+                data-vi="Dẫn dắt kiến trúc và phát triển nền tảng chăm sóc da AI full-stack, điều phối đội 3 người trên frontend, backend và AI service">
+                Led the architecture and delivery of a full-stack AI skincare platform, coordinating a three-person
+                team across frontend, backend, and AI service development</li>
+              <li data-en="Integrated a multi-model inference pipeline for facial segmentation, skin-condition classification, and severity scoring, balancing accuracy, latency, and infrastructure cost"
+                data-vi="Tích hợp pipeline inference đa model cho phân đoạn khuôn mặt, phân loại tình trạng da và chấm điểm mức độ, cân bằng giữa độ chính xác, độ trễ và chi phí hạ tầng">
+                Integrated a multi-model inference pipeline for facial segmentation, skin-condition classification,
+                and severity scoring, balancing accuracy, latency, and infrastructure cost</li>
+              <li data-en="Built the CI/CD and deployment workflow using GitHub Actions, Docker Compose, and a production VPS, maintaining five containerized services for over five weeks with 0% downtime"
+                data-vi="Xây dựng CI/CD và quy trình triển khai với GitHub Actions, Docker Compose và VPS production, vận hành 5 service container hóa trong hơn 5 tuần với 0% downtime">
+                Built the CI/CD and deployment workflow using GitHub Actions, Docker Compose, and a production VPS,
+                maintaining five containerized services for over five weeks with 0% downtime</li>
+              <li data-en="Grew the platform to 117 registered users, a 23.9% free-to-paid conversion rate, 260 completed skin analyses, and 5,750+ tracked visits"
+                data-vi="Đạt 117 người dùng đăng ký, tỷ lệ chuyển đổi trả phí 23.9%, 260 lượt phân tích da và hơn 5,750 lượt truy cập">
+                Grew the platform to 117 registered users, a 23.9% free-to-paid conversion rate, 260 completed skin
+                analyses, and 5,750+ tracked visits</li>
+            </ul>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">Docker Compose</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 - DATA ORIENTED -->
+        <article class="project-item fade-in">
+          <div class="project-meta">
+            <span data-en="Data Engineering" data-vi="Kỹ thuật Dữ liệu">Data Engineering</span>
             <span data-en="May — Dec 2025" data-vi="05 — 12/2025">May — Dec 2025</span>
           </div>
           <div class="project-content">
             <h3 class="project-title" data-en="Enterprise Data Pipelines" data-vi="Data Pipeline cho Doanh nghiệp">
               Enterprise Data Pipelines</h3>
-            <p class="project-description"
-              data-en="Designed and implemented automated ETL pipelines for enterprise data processing. Built scalable data infrastructure using PostgreSQL, S3, and containerized services with Docker and Kubernetes."
-              data-vi="Thiết kế và triển khai pipeline ETL tự động để xử lý dữ liệu doanh nghiệp. Xây dựng hạ tầng dữ liệu có khả năng mở rộng sử dụng PostgreSQL, S3 và các service container hóa với Docker và Kubernetes.">
-              Designed and implemented automated ETL pipelines for enterprise data processing. Built scalable data
-              infrastructure using PostgreSQL, S3, and containerized services with Docker and Kubernetes.
-            </p>
+            <ul class="project-bullets">
+              <li data-en="Designed and implemented automated ETL pipelines for enterprise data processing"
+                data-vi="Thiết kế và triển khai pipeline ETL tự động để xử lý dữ liệu doanh nghiệp">
+                Designed and implemented automated ETL pipelines for enterprise data processing</li>
+              <li data-en="Built scalable data infrastructure using PostgreSQL, S3, and containerized services with Docker and Kubernetes"
+                data-vi="Xây dựng hạ tầng dữ liệu có khả năng mở rộng sử dụng PostgreSQL, S3 và các service container hóa với Docker và Kubernetes">
+                Built scalable data infrastructure using PostgreSQL, S3, and containerized services with Docker and
+                Kubernetes</li>
+            </ul>
             <div class="project-tech">
               <span class="tech-tag">PostgreSQL</span>
               <span class="tech-tag">S3</span>
@@ -299,7 +343,8 @@
           <ul class="skill-list">
             <li>Git / GitHub</li>
             <li>Docker</li>
-            <li>Kubernetes</li>
+            <li data-en="Kubernetes (Basic)" data-vi="Kubernetes (Cơ bản)">Kubernetes (Basic)</li>
+            <li data-en="CI/CD (Basic)" data-vi="CI/CD (Cơ bản)">CI/CD (Basic)</li>
             <li>PostgreSQL / S3</li>
           </ul>
         </div>
@@ -307,9 +352,27 @@
         <div class="skill-category">
           <h4 data-en="Certifications" data-vi="Chứng chỉ">Certifications</h4>
           <ul class="skill-list">
-            <li>Deep Learning Specialization</li>
+            <li>DeepLearning.AI TensorFlow Developer</li>
             <li>NLP Specialization</li>
-            <li>IBM Full Stack Developer</li>
+            <li>IBM AI Enterprise Workflow</li>
+            <li>Big Data Specialization</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h4 data-en="Awards" data-vi="Giải thưởng">Awards</h4>
+          <ul class="skill-list">
+            <li data-en="Top 5 Finalist — DENSO Hackathon 2025" data-vi="Top 5 Chung kết — DENSO Hackathon 2025">
+              Top 5 Finalist — DENSO Hackathon 2025</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h4 data-en="Languages" data-vi="Ngôn ngữ">Languages</h4>
+          <ul class="skill-list">
+            <li data-en="English — Professional working proficiency" data-vi="Tiếng Anh — Thành thạo trong công việc">
+              English — Professional working proficiency</li>
+            <li data-en="Vietnamese — Native" data-vi="Tiếng Việt — Bản ngữ">Vietnamese — Native</li>
           </ul>
         </div>
       </div>
@@ -332,7 +395,7 @@
           to reach out!
         </p>
 
-        <a href="mailto:minhthan189@gmail.com" class="contact-email">minhthan189@gmail.com</a>
+        <a href="mailto:minhthan.work@gmail.com" class="contact-email">minhthan.work@gmail.com</a>
 
         <div class="contact-links">
           <a href="https://github.com/thanminh24" class="contact-link" target="_blank">
@@ -349,7 +412,7 @@
   <!-- ======================== FOOTER ======================== -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2025 Thân Tuệ Minh</p>
+      <p>&copy; 2026 Thân Tuệ Minh</p>
     </div>
   </footer>
 

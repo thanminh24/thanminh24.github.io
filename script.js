@@ -38,11 +38,11 @@ function updateThemeIcon(preference) {
     if (!icon) return;
 
     if (preference === 'auto') {
-        icon.className = 'fa-solid fa-circle-half-stroke'; // Auto icon
+        icon.textContent = 'Auto';
     } else if (preference === 'dark') {
-        icon.className = 'fa-solid fa-moon';
+        icon.textContent = 'Dark';
     } else {
-        icon.className = 'fa-solid fa-sun';
+        icon.textContent = 'Light';
     }
 }
 
