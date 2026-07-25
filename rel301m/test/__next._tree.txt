@@ -1,0 +1,2 @@
+:HL["/rel301m/_next/static/chunks/09l9_0kbyobsf.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"test","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"rel301m-study-d881c163-83e2458d"}
