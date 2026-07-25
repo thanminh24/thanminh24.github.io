@@ -1,4 +1,4 @@
-const CACHE_NAME = "rel301m-study-d881c163-83e2458d";
+const CACHE_NAME = "rel301m-study-0f926db6-cef7396b";
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, "");
 const CORE_ROUTES = [
   `${BASE_PATH}/`,
