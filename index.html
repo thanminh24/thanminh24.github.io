@@ -163,25 +163,22 @@
               Intern</h3>
             <p class="experience-company">Digipro Tech., JSC</p>
             <ul class="experience-description">
-              <li data-en="Delivered 5+ AI POCs (forecasting, classification, NLP) as reusable components for larger systems — data prep, feature logic, inference prototypes"
-                data-vi="Hoàn thành hơn 5 POC về AI (dự báo, phân loại, NLP) dưới dạng component tái sử dụng cho hệ thống lớn — chuẩn bị dữ liệu, xử lý feature, prototype inference">
-                Delivered 5+ AI POCs (forecasting, classification, NLP) as reusable components for larger systems —
-                data prep, feature logic, inference prototypes</li>
-              <li data-en="Built automated ETL/data pipelines for training and inference, cutting manual work by ~30%"
-                data-vi="Xây dựng pipeline ETL/dữ liệu tự động cho huấn luyện và inference, giảm ~30% công việc thủ công">
-                Built automated ETL/data pipelines for training and inference, cutting manual work by ~30%</li>
-              <li data-en="Managed datasets and features using PostgreSQL + S3 object storage, writing optimized SQL and maintaining curated tables"
-                data-vi="Quản lý dữ liệu và feature với PostgreSQL + S3, viết SQL tối ưu và duy trì các bảng dữ liệu chuẩn hóa">
-                Managed datasets and features using PostgreSQL + S3 object storage, writing optimized SQL and
-                maintaining curated tables</li>
-              <li data-en="Packaged services with Docker and supported deployments on Kubernetes (incl. Helm-style configs) for consistent environments"
-                data-vi="Đóng gói service với Docker và hỗ trợ triển khai trên Kubernetes (bao gồm cấu hình kiểu Helm) để đảm bảo môi trường nhất quán">
-                Packaged services with Docker and supported deployments on Kubernetes (incl. Helm-style configs) for
-                consistent environments</li>
-              <li data-en="Ran analysis and evaluation (classification/clustering/NLP), improving model performance by ~20% and documenting handoff notes"
-                data-vi="Thực hiện phân tích và đánh giá (phân loại/phân cụm/NLP), cải thiện hiệu năng model ~20% và viết tài liệu bàn giao">
-                Ran analysis and evaluation (classification/clustering/NLP), improving model performance by ~20% and
-                documenting handoff notes</li>
+              <li data-en="Engineered 5+ modular service components and automated ETL pipelines for data processing and feature logic, cutting operational overhead by ~30%"
+                data-vi="Xây dựng hơn 5 module service và pipeline ETL tự động cho xử lý dữ liệu và feature logic, giảm ~30% chi phí vận hành">
+                Engineered 5+ modular service components and automated ETL pipelines for data processing and feature
+                logic, cutting operational overhead by ~30%</li>
+              <li data-en="Managed relational and object storage across PostgreSQL and S3, authoring optimized SQL queries, schema migrations, and curated tables"
+                data-vi="Quản lý dữ liệu quan hệ và object storage trên PostgreSQL và S3, viết SQL tối ưu, thực hiện schema migration và duy trì các bảng dữ liệu chuẩn hóa">
+                Managed relational and object storage across PostgreSQL and S3, authoring optimized SQL queries,
+                schema migrations, and curated tables</li>
+              <li data-en="Containerized microservices via Docker and deployed to Kubernetes clusters using Helm configs to standardize multi-environment parity"
+                data-vi="Container hóa microservice với Docker và triển khai lên Kubernetes bằng cấu hình Helm để chuẩn hóa môi trường triển khai">
+                Containerized microservices via Docker and deployed to Kubernetes clusters using Helm configs to
+                standardize multi-environment parity</li>
+              <li data-en="Conducted systematic benchmarking and performance profiling, optimizing execution efficiency and system throughput by ~20%"
+                data-vi="Thực hiện benchmarking và profiling hiệu năng hệ thống, tối ưu hiệu suất xử lý và throughput ~20%">
+                Conducted systematic benchmarking and performance profiling, optimizing execution efficiency and
+                system throughput by ~20%</li>
             </ul>
           </div>
         </article>
@@ -248,19 +245,19 @@
             <h3 class="project-title" data-en="Test-Time Adaptation in Medical Images"
               data-vi="Test-Time Adaptation cho Ảnh Y tế">Test-Time Adaptation in Medical Images</h3>
             <ul class="project-bullets">
-              <li data-en="Test-time adaptation for classification without access to source training data"
-                data-vi="Test-time adaptation cho bài toán phân loại mà không cần truy cập dữ liệu huấn luyện gốc">
-                Test-time adaptation for classification without access to source training data</li>
-              <li data-en="Lightweight adaptation of only classifier/routing parameters, encoder frozen"
-                data-vi="Chỉ điều chỉnh nhẹ các tham số classifier/routing, giữ nguyên encoder">
-                Lightweight adaptation of only classifier/routing parameters, encoder frozen</li>
-              <li data-en="Applied to whole-slide image (WSI) classification pipeline"
-                data-vi="Áp dụng vào pipeline phân loại ảnh whole-slide (WSI)">
-                Applied to whole-slide image (WSI) classification pipeline</li>
+              <li data-en="Designed a source-free test-time adaptation method for frozen foundation models, enabling online slide classification on unlabeled target domains without retraining"
+                data-vi="Thiết kế phương pháp test-time adaptation không cần dữ liệu nguồn cho các foundation model đóng băng, cho phép phân loại slide trực tuyến trên miền dữ liệu chưa gán nhãn mà không cần huấn luyện lại">
+                Designed a source-free test-time adaptation method for frozen foundation models, enabling online
+                slide classification on unlabeled target domains without retraining</li>
+              <li data-en="Implemented a dynamic two-cache adapter (memory cache + kernel ridge regression) to handle domain shift and class imbalance, validated on CLIP/ImageNet benchmarks"
+                data-vi="Triển khai adapter hai cache động (memory cache + kernel ridge regression) để xử lý domain shift và mất cân bằng lớp, đánh giá trên benchmark CLIP/ImageNet">
+                Implemented a dynamic two-cache adapter (memory cache + kernel ridge regression) to handle domain
+                shift and class imbalance, validated on CLIP/ImageNet benchmarks</li>
             </ul>
             <div class="project-tech">
               <span class="tech-tag">Python</span>
-              <span class="tech-tag">Deep Learning</span>
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">CLIP</span>
               <span class="tech-tag">Medical Imaging</span>
             </div>
           </div>
@@ -283,10 +280,10 @@
                 data-vi="Tích hợp pipeline inference đa model cho phân đoạn khuôn mặt, phân loại tình trạng da và chấm điểm mức độ, cân bằng giữa độ chính xác, độ trễ và chi phí hạ tầng">
                 Integrated a multi-model inference pipeline for facial segmentation, skin-condition classification,
                 and severity scoring, balancing accuracy, latency, and infrastructure cost</li>
-              <li data-en="Built the CI/CD and deployment workflow using GitHub Actions, Docker Compose, and a production VPS, maintaining five containerized services for over five weeks with 0% downtime"
-                data-vi="Xây dựng CI/CD và quy trình triển khai với GitHub Actions, Docker Compose và VPS production, vận hành 5 service container hóa trong hơn 5 tuần với 0% downtime">
-                Built the CI/CD and deployment workflow using GitHub Actions, Docker Compose, and a production VPS,
-                maintaining five containerized services for over five weeks with 0% downtime</li>
+              <li data-en="Built CI/CD and production infrastructure using Docker Compose, VPS, and GitHub Actions, maintaining 5 containerized microservices with zero unplanned downtime"
+                data-vi="Xây dựng CI/CD và hạ tầng production với Docker Compose, VPS và GitHub Actions, vận hành 5 microservice container hóa không xảy ra downtime ngoài kế hoạch">
+                Built CI/CD and production infrastructure using Docker Compose, VPS, and GitHub Actions, maintaining
+                5 containerized microservices with zero unplanned downtime</li>
               <li data-en="Grew the platform to 117 registered users, a 23.9% free-to-paid conversion rate, 260 completed skin analyses, and 5,750+ tracked visits"
                 data-vi="Đạt 117 người dùng đăng ký, tỷ lệ chuyển đổi trả phí 23.9%, 260 lượt phân tích da và hơn 5,750 lượt truy cập">
                 Grew the platform to 117 registered users, a 23.9% free-to-paid conversion rate, 260 completed skin
@@ -303,30 +300,35 @@
           </div>
         </article>
 
-        <!-- Project 4 - DATA ORIENTED -->
+        <!-- Project 4: APS-WSI -->
         <article class="project-item fade-in">
           <div class="project-meta">
-            <span data-en="Data Engineering" data-vi="Kỹ thuật Dữ liệu">Data Engineering</span>
-            <span data-en="May — Dec 2025" data-vi="05 — 12/2025">May — Dec 2025</span>
+            <span data-en="Medical AI / Thesis" data-vi="AI Y tế / Đồ án tốt nghiệp">Medical AI / Thesis</span>
+            <span data-en="Aug 2026 — Present" data-vi="08/2026 — Hiện tại">Aug 2026 — Present</span>
           </div>
           <div class="project-content">
-            <h3 class="project-title" data-en="Enterprise Data Pipelines" data-vi="Data Pipeline cho Doanh nghiệp">
-              Enterprise Data Pipelines</h3>
+            <h3 class="project-title" data-en="APS-WSI: Patient Similarity Retrieval for Whole-Slide Pathology"
+              data-vi="APS-WSI: Truy vấn Bệnh nhân Tương tự cho Bệnh học Whole-Slide">
+              APS-WSI: Patient Similarity Retrieval for Whole-Slide Pathology</h3>
             <ul class="project-bullets">
-              <li data-en="Designed and implemented automated ETL pipelines for enterprise data processing"
-                data-vi="Thiết kế và triển khai pipeline ETL tự động để xử lý dữ liệu doanh nghiệp">
-                Designed and implemented automated ETL pipelines for enterprise data processing</li>
-              <li data-en="Built scalable data infrastructure using PostgreSQL, S3, and containerized services with Docker and Kubernetes"
-                data-vi="Xây dựng hạ tầng dữ liệu có khả năng mở rộng sử dụng PostgreSQL, S3 và các service container hóa với Docker và Kubernetes">
-                Built scalable data infrastructure using PostgreSQL, S3, and containerized services with Docker and
-                Kubernetes</li>
+              <li data-en="Designed an evidence-based case retrieval workflow for an undergraduate thesis to provide auditable, patient-similarity diagnostic support in digital pathology"
+                data-vi="Thiết kế quy trình truy vấn ca bệnh dựa trên bằng chứng cho đồ án tốt nghiệp, hỗ trợ chẩn đoán dựa trên độ tương tự bệnh nhân có thể kiểm chứng trong bệnh học số">
+                Designed an evidence-based case retrieval workflow for an undergraduate thesis to provide auditable,
+                patient-similarity diagnostic support in digital pathology</li>
+              <li data-en="Built a whole-slide image retrieval pipeline using frozen TITAN, SQLite, and LanceDB across an NSCLC prototype cohort"
+                data-vi="Xây dựng pipeline truy vấn ảnh whole-slide dùng TITAN đóng băng, SQLite và LanceDB trên tập dữ liệu thử nghiệm NSCLC">
+                Built a whole-slide image retrieval pipeline using frozen TITAN, SQLite, and LanceDB across an NSCLC
+                prototype cohort</li>
+              <li data-en="Generated multimodal morphological captions using Prov-GigaPath and WSI-LLaVA to provide contextual diagnostic explanations for retrieved cases"
+                data-vi="Tạo chú thích hình thái đa phương thức bằng Prov-GigaPath và WSI-LLaVA để giải thích chẩn đoán theo ngữ cảnh cho các ca bệnh được truy vấn">
+                Generated multimodal morphological captions using Prov-GigaPath and WSI-LLaVA to provide contextual
+                diagnostic explanations for retrieved cases</li>
             </ul>
             <div class="project-tech">
-              <span class="tech-tag">PostgreSQL</span>
-              <span class="tech-tag">S3</span>
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">Kubernetes</span>
-              <span class="tech-tag">ETL</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">LanceDB</span>
+              <span class="tech-tag">SQLite</span>
+              <span class="tech-tag">Whole-Slide Imaging</span>
             </div>
           </div>
         </article>
@@ -354,23 +356,33 @@
         </div>
 
         <div class="skill-category">
-          <h3>Machine Learning</h3>
+          <h3 data-en="ML &amp; Frameworks" data-vi="ML &amp; Framework">ML &amp; Frameworks</h3>
           <ul class="skill-list">
-            <li>TensorFlow</li>
+            <li>PyTorch</li>
+            <li>Hugging Face</li>
+            <li>MLflow</li>
+            <li>H2O AutoML</li>
+            <li>Scikit-learn</li>
             <li>Pandas / NumPy</li>
-            <li>Computer Vision</li>
-            <li>NLP</li>
           </ul>
         </div>
 
         <div class="skill-category">
-          <h3>DevOps &amp; Tools</h3>
+          <h3 data-en="Databases &amp; Storage" data-vi="Cơ sở dữ liệu &amp; Lưu trữ">Databases &amp; Storage</h3>
           <ul class="skill-list">
-            <li>Git / GitHub</li>
+            <li>PostgreSQL</li>
+            <li>SQLite</li>
+            <li data-en="AWS S3 / Object Storage" data-vi="AWS S3 / Object Storage">AWS S3 / Object Storage</li>
+          </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3 data-en="Deployment &amp; Tools" data-vi="Triển khai &amp; Công cụ">Deployment &amp; Tools</h3>
+          <ul class="skill-list">
             <li>Docker</li>
-            <li data-en="Kubernetes (Basic)" data-vi="Kubernetes (Cơ bản)">Kubernetes (Basic)</li>
-            <li data-en="CI/CD (Basic)" data-vi="CI/CD (Cơ bản)">CI/CD (Basic)</li>
-            <li>PostgreSQL / S3</li>
+            <li>Kubernetes</li>
+            <li>Git</li>
+            <li>CI/CD</li>
           </ul>
         </div>
 
