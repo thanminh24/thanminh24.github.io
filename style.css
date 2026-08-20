@@ -386,8 +386,12 @@ section {
 .nav-resume {
   padding: var(--space-xs) var(--space-sm);
   border: 1px solid var(--accent);
+  background: transparent;
   color: var(--accent);
   font-weight: 500;
+  font-family: inherit;
+  font-size: var(--text-xs);
+  cursor: pointer;
   border-radius: 4px;
 }
 
