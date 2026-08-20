@@ -9,10 +9,9 @@ const RESUME_CONFIG = {
         username: 'thanminh24',
         repo: 'thanminh24.github.io',
         tag: 'resume-v1',
-        // GitHub sanitizes release asset names (spaces/parens -> dots) on upload
         files: {
-            en: 'Resume.-.Than.Tue.Minh.EN.pdf',
-            vi: 'Resume.-.Than.Tue.Minh.VI.pdf'
+            en: 'Resume.Than.Tue.Minh.EN.pdf',
+            vi: 'Resume.Than.Tue.Minh.VI.pdf'
         }
     },
 

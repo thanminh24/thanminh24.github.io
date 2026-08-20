@@ -400,6 +400,11 @@ section {
   display: none;
 }
 
+.nav-resume:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
 /* Resume Dropdown */
 .resume-dropdown {
   position: relative;
