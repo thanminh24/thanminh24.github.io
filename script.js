@@ -135,6 +135,46 @@ function initLanguage() {
 }
 
 // ==========================================================================
+// RESUME DROPDOWN
+// ==========================================================================
+
+function initResumeDropdown() {
+    const toggle = document.getElementById('resumeBtn');
+    const menu = document.getElementById('resumeDropdownMenu');
+    if (!toggle || !menu) return;
+
+    function isOpen() {
+        return menu.classList.contains('active');
+    }
+
+    function setOpen(open) {
+        menu.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', event => {
+        event.stopPropagation();
+        setOpen(!isOpen());
+    });
+
+    menu.addEventListener('click', event => {
+        if (event.target.closest('.resume-dropdown-item')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && isOpen()) {
+            setOpen(false);
+            toggle.focus();
+        }
+    });
+
+    document.addEventListener('click', event => {
+        if (!isOpen()) return;
+        if (!menu.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
+    });
+}
+
+// ==========================================================================
 // MOBILE NAVIGATION
 // ==========================================================================
 
@@ -338,6 +378,7 @@ function initScrollReveal() {
 function initPortfolio() {
     initTheme();
     initLanguage();
+    initResumeDropdown();
     initMobileNavigation();
     initActiveNavigation();
     initScrollReveal();
